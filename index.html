@@ -128,10 +128,11 @@ function gerarPDF() {
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
-            a.download = "Contrato_Preenchido.pdf";
+            a.setAttribute("download", "Contrato_Preenchido.pdf"); // Define o atributo de download
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
+            window.URL.revokeObjectURL(url); // Libera memória
         })
         .catch(error => console.error("Erro:", error));
 }
